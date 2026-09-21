@@ -297,7 +297,7 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
       const formData = new FormData()
       formData.append('file', file)
       
-      const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+      const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
       const response = await fetch(`${baseUrl}/api/ocr/extract`, {
         method: 'POST',
         body: formData

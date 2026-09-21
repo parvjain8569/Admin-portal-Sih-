@@ -61,8 +61,7 @@ export default function ProfileTab({
     }
   }, [profileData])
 
-  const handleAadhaarVerify = () => {
-    const cleaned = aadhaarInput.replace(/\s/g, '')
+  const executeAadhaarVerify = (cleaned) => {
     if (cleaned.length !== 12 || !/^\d+$/.test(cleaned)) {
       setAadhaarError('Please enter a valid 12-digit Aadhaar number.')
       return
@@ -94,7 +93,12 @@ export default function ProfileTab({
         aadhaarVerified: true,
         aadhaarDetails: mockData,
       })
-    }, 2000)
+    }, 1500) // Reduced to 1.5s for faster UX
+  }
+
+  const handleAadhaarVerify = () => {
+    const cleaned = aadhaarInput.replace(/\s/g, '')
+    executeAadhaarVerify(cleaned)
   }
 
   const handleResetAadhaar = () => {
@@ -357,6 +361,11 @@ export default function ProfileTab({
                     const formatted = raw.replace(/(\d{4})(?=\d)/g, '$1 ')
                     setAadhaarInput(formatted)
                     if (aadhaarError) setAadhaarError('')
+                    
+                    // Auto-fetch data if exactly 12 digits are typed
+                    if (raw.length === 12 && !aadhaarVerifying) {
+                      executeAadhaarVerify(raw)
+                    }
                   }}
                   disabled={aadhaarVerifying}
                 />
