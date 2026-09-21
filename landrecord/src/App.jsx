@@ -38,7 +38,10 @@ export default function App() {
   
   const [currentUser, setCurrentUser] = useState(() => {
     try {
-      return localStorage.getItem('devMode') === 'true' ? getDevUser() : null
+      if (localStorage.getItem('devMode') === 'true') return getDevUser()
+      
+      const savedUser = localStorage.getItem('bhoomiUser')
+      return savedUser ? JSON.parse(savedUser) : null
     } catch {
       return null
     }
@@ -73,17 +76,23 @@ export default function App() {
   const handleLoginSuccess = (userData) => {
     setCurrentUser(userData)
     setCurrentPage('website')
+    try {
+      localStorage.setItem('bhoomiUser', JSON.stringify(userData))
+    } catch {}
   }
 
   // Logout handler resets user and stays on website as guest
   const handleLogout = () => {
     setCurrentUser(null)
     setCurrentPage('website')
-    if (devMode) {
-      setDevMode(false)
-      localStorage.setItem('devMode', 'false')
-      window.dispatchEvent(new Event('devModeChange'))
-    }
+    try {
+      localStorage.removeItem('bhoomiUser')
+      if (devMode) {
+        setDevMode(false)
+        localStorage.setItem('devMode', 'false')
+        window.dispatchEvent(new Event('devModeChange'))
+      }
+    } catch {}
   }
 
   return (
