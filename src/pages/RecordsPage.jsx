@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import RecordAuditStudio from '../components/RecordAuditStudio.jsx'
-import { getLandRecords, saveLandRecord } from 'sih-database'
+import { getLandRecords, saveLandRecord } from '../lib/index.js'
+
 
 export default function RecordsPage() {
   const [records, setRecords] = useState([])

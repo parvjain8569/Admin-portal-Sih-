@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getLandRecords } from 'sih-database'
+import { getLandRecords } from '../lib/index.js'
+
 
 export default function DashboardHome({ user }) {
   const [totalRecords, setTotalRecords] = useState('0')
