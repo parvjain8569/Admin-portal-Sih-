@@ -25,7 +25,8 @@ import FetchingDetailsOverlay from './components/FetchingDetailsOverlay'
 import CaptchaVerification from './components/CaptchaModal'
 
 // ── Supabase Database & Storage Services ───────────────────────
-import { getLandRecords, saveLandRecord, subscribeToRecordChanges } from 'sih-database'
+import { getLandRecords, saveLandRecord, subscribeToRecordChanges } from './lib/index.js'
+
 
 // ── Initial Sample Records for Demo Registry ───────────────────
 const INITIAL_RECORDS = [
