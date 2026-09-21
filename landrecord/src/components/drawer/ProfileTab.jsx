@@ -45,6 +45,19 @@ export default function ProfileTab({
     if (profileData?.aadhaarVerified && profileData?.aadhaarDetails) {
       setIsAadhaarVerified(true)
       setAadhaarDetails(profileData.aadhaarDetails)
+      
+      // Auto-fill the profile form with Aadhaar details
+      setFormData(prev => ({
+        ...prev,
+        name: profileData.aadhaarDetails.name || prev.name,
+        dob: profileData.aadhaarDetails.dob || prev.dob,
+        gender: profileData.aadhaarDetails.gender || prev.gender,
+        address: profileData.aadhaarDetails.address || prev.address,
+        district: profileData.aadhaarDetails.district || prev.district,
+        state: profileData.aadhaarDetails.state || prev.state,
+        contact: profileData.aadhaarDetails.contact || prev.contact,
+        isPhoneVerified: true,
+      }))
     }
   }, [profileData])
 

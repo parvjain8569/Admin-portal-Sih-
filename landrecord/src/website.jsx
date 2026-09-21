@@ -141,6 +141,7 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
   const [showDocReview, setShowDocReview] = useState(false)
   const [reviewFileName, setReviewFileName] = useState(null)
   const [showCaptcha, setShowCaptcha] = useState(false)
+  const [extractedOcrData, setExtractedOcrData] = useState(null)
 
   const stepsRef = useRef(null)
   const fileInputRef = useRef(null)
@@ -272,7 +273,7 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
     setShowCaptcha(true)
   }
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
 
@@ -290,22 +291,46 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
     setReviewFileName(file.name)
     setShowFetching(true)
 
+    let extracted = null;
+    
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      
+      const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+      const response = await fetch(`${baseUrl}/api/ocr/extract`, {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        extracted = result.data || {}
+        setExtractedOcrData(extracted)
+      } else {
+        setExtractedOcrData(null)
+      }
+    } catch (err) {
+      console.error('[BhoomIntelli] OCR API Error:', err)
+      setExtractedOcrData(null)
+    }
+
     // Add to records immediately in background
     const newParcelId = 'HR-' + Math.floor(21000 + Math.random() * 8000)
     const newRecord = {
       id: 'REC-' + Math.floor(10000 + Math.random() * 90000),
-      ownerName: profileData.name || user?.name || user?.username || 'Authorized Landholder',
+      ownerName: extracted?.ownerName || profileData.name || user?.name || user?.username || 'Authorized Landholder',
       userEmail: profileData.email || user?.email || 'citizen@bhoomintelli.in',
       parcelId: newParcelId,
-      date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+      date: extracted?.date || new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
       status: 'Verified',
-      khasraNo: `${Math.floor(20 + Math.random() * 150)}/${Math.floor(1 + Math.random() * 15)}`,
-      khatouniNo: `KH-${Math.floor(100 + Math.random() * 900)}`,
+      khasraNo: extracted?.khasraNo || `${Math.floor(20 + Math.random() * 150)}/${Math.floor(1 + Math.random() * 15)}`,
+      khatouniNo: extracted?.khataNo || `KH-${Math.floor(100 + Math.random() * 900)}`,
       tehsil: 'Gurugram Sadar',
       village: 'Khandsa',
-      district: profileData.district || 'Gurugram',
-      state: profileData.state || 'Haryana',
-      area: '2.1 Hectares',
+      district: extracted?.district || profileData.district || 'Gurugram',
+      state: extracted?.state || profileData.state || 'Haryana',
+      area: extracted?.area || '2.1 Hectares',
       disputeStatus: 'Clear',
       verifiedBy: 'Tehsildar Office (Revenue Registry)',
       documentName: file.name,
@@ -336,11 +361,8 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
       unread: true,
     }, ...prev])
 
-    // After 1.6s: hide fetching overlay → show Document Review page
-    setTimeout(() => {
-      setShowFetching(false)
-      setShowDocReview(true)
-    }, 1600)
+    setShowFetching(false)
+    setShowDocReview(true)
   }
 
   // ── Profile & Settings update handlers ─────────────────────────────────────
@@ -390,6 +412,7 @@ export default function Website({ user, onLogout, onOpenLogin, onOpenLanguage })
       {showDocReview && (
         <DocumentReviewPage
           uploadedFileName={reviewFileName}
+          extractedData={extractedOcrData}
           onBack={() => {
             setShowDocReview(false)
             setActiveNav('My Records')

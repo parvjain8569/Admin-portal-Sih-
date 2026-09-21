@@ -42,9 +42,19 @@ const HIGHLIGHT_COLORS = {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-export default function DocumentReviewPage({ onBack, uploadedFileName }) {
+export default function DocumentReviewPage({ onBack, uploadedFileName, extractedData }) {
   const { t } = useLanguage()
-  const [fields, setFields] = useState(INITIAL_FIELDS)
+  
+  // Use real extracted data if available, fallback to demo data otherwise
+  const initialFields = extractedData ? [
+    { id: 'owner',    label: 'Owner Name',    value: extractedData.ownerName || 'Not Found', reviewState: 'PENDING' },
+    { id: 'khasra',   label: 'Khasra Number', value: extractedData.khasraNo || 'Not Found',  reviewState: 'PENDING' },
+    { id: 'area',     label: 'Plot Area',     value: extractedData.area || 'Not Found',      reviewState: 'PENDING' },
+    { id: 'date',     label: 'Deed Date',     value: extractedData.date || 'Not Found',      reviewState: 'PENDING' },
+    { id: 'mutation', label: 'Khata Number',  value: extractedData.khataNo || 'Not Found',   reviewState: 'PENDING' },
+  ] : INITIAL_FIELDS
+
+  const [fields, setFields] = useState(initialFields)
   const [submitted, setSubmitted] = useState(false)
   const [activeFieldId, setActiveFieldId] = useState(null)
 
