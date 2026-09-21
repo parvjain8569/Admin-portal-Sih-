@@ -1,0 +1,284 @@
+===============================================================================
+                    BHOOMINTELLI - PROJECT SETUP NOTES
+        Intelligent Land Record Digitization & Validation System
+===============================================================================
+
+
+===============================================================================
+  1. PREREQUISITES (Install These First)
+===============================================================================
+
+  a) Node.js (v18 or higher recommended, this project uses v26.5.0)
+     - Download from: https://nodejs.org/
+     - After installing, verify with:
+         node -v
+         npm -v
+
+  b) VS Code (Code Editor)
+     - Download from: https://code.visualstudio.com/
+
+  c) Git (Version Control - Optional but recommended)
+     - Download from: https://git-scm.com/
+
+
+===============================================================================
+  2. VS CODE EXTENSIONS (Recommended)
+===============================================================================
+
+  Install these extensions in VS Code for the best experience:
+
+  MUST HAVE:
+  ----------
+  - ES7+ React/Redux/React-Native snippets  (by dsznajder)
+  - Prettier - Code formatter              (by Prettier)
+  - ESLint                                  (by Microsoft)
+  - Auto Rename Tag                         (by Jun Han)
+
+  NICE TO HAVE:
+  -------------
+  - CSS Peek                                (by Pranay Prakash)
+  - Path Intellisense                       (by Christian Kohler)
+  - Bracket Pair Color DLX                  (by Bracket Pair Color DLX)
+  - Material Icon Theme                     (by Philipp Kief)
+  - Live Server                             (by Ritwick Dey)
+  - Error Lens                              (by Alexander)
+  - Thunder Client                          (by Ranga Vadhineni) - for API testing
+
+
+===============================================================================
+  3. PROJECT STRUCTURE
+===============================================================================
+
+  landrecord/
+  ├── backend/                 <-- Express.js backend server
+  │   ├── package.json         <-- Backend dependencies (express, cors)
+  │   ├── server.js            <-- Backend API server (port 5000)
+  │   └── records.json         <-- JSON database for land records
+  │
+  ├── public/                  <-- Static assets (logos, favicon)
+  │   ├── bhoomintelli-icon.png
+  │   ├── bhoomintelli-wordmark.png
+  │   ├── bhoomintelli-logo.png
+  │   ├── favicon.svg
+  │   └── icons.svg
+  │
+  ├── src/                     <-- React source code
+  │   ├── assets/              <-- Imported assets (images, SVGs)
+  │   ├── components/          <-- React components
+  │   │   ├── drawer/          <-- Side drawer (MenuDrawer, tabs)
+  │   │   ├── modals/          <-- Modal popups
+  │   │   ├── Navbar.jsx
+  │   │   ├── HeroSection.jsx
+  │   │   ├── FeaturesSection.jsx
+  │   │   ├── ThreeStepsSection.jsx
+  │   │   ├── ImpactSection.jsx
+  │   │   ├── TransformationFlow.jsx
+  │   │   ├── MyRecordsSection.jsx
+  │   │   └── Footer.jsx
+  │   │
+  │   ├── utils/               <-- Utility functions
+  │   ├── App.jsx              <-- Main app component
+  │   ├── App.css
+  │   ├── website.jsx          <-- Website layout (all sections)
+  │   ├── website.css          <-- Main website styles
+  │   ├── login.jsx            <-- Auth / Login page
+  │   ├── login.css            <-- Login styles
+  │   ├── main.jsx             <-- React entry point
+  │   └── index.css            <-- Global base styles
+  │
+  ├── index.html               <-- HTML entry point
+  ├── package.json             <-- Frontend dependencies
+  ├── vite.config.js           <-- Vite bundler configuration
+  └── .gitignore
+
+
+===============================================================================
+  4. HOW TO RUN - STEP BY STEP
+===============================================================================
+
+  STEP 1: Open Terminal in the project root folder
+  -------------------------------------------------
+  Open VS Code → File → Open Folder → select the "landrecord" folder
+  Then open terminal: Ctrl + ` (backtick key)
+
+
+  STEP 2: Install Frontend Dependencies
+  -------------------------------------------------
+  Run this command in the terminal (make sure you're in the landrecord folder):
+
+      npm install
+
+  This will read package.json and install:
+    - react (v19)
+    - react-dom (v19)
+    - vite (v8)
+    - @vitejs/plugin-react
+    - oxlint (linter)
+
+  A "node_modules" folder will be created automatically. DO NOT edit or
+  delete this folder manually.
+
+
+  STEP 3: Start the Frontend Dev Server
+  -------------------------------------------------
+      npm run dev
+
+  This starts the Vite development server.
+  You will see output like:
+
+      VITE v8.x.x  ready in XXXms
+      ➜  Local:   http://localhost:5173/
+      ➜  Network: http://192.168.x.x:5173/
+
+  Open http://localhost:5173 in your browser.
+  The page auto-refreshes when you save any file (Hot Module Replacement).
+
+
+  STEP 4: Install Backend Dependencies (SEPARATE TERMINAL)
+  -------------------------------------------------
+  Open a NEW terminal tab (click the + icon in VS Code terminal).
+
+      cd backend
+      npm install
+
+  This installs:
+    - express (v4)
+    - cors
+
+
+  STEP 5: Start the Backend Server
+  -------------------------------------------------
+  In the same terminal (inside the backend folder):
+
+      npm start
+
+  OR:
+
+      node server.js
+
+  You will see:
+
+      BhoomiSetu backend running on port 5000
+
+  The backend API is now available at http://localhost:5000
+
+
+===============================================================================
+  5. QUICK REFERENCE - ALL COMMANDS
+===============================================================================
+
+  ┌────────────────────────────────────────────────────────────────────┐
+  │  FRONTEND (run from landrecord/ root)                            │
+  ├────────────────────────────────────────────────────────────────────┤
+  │  npm install          → Install all frontend dependencies        │
+  │  npm run dev          → Start dev server (http://localhost:5173)  │
+  │  npm run build        → Build for production (creates dist/)     │
+  │  npm run preview      → Preview production build locally         │
+  │  npm run lint         → Run oxlint code linter                   │
+  ├────────────────────────────────────────────────────────────────────┤
+  │  BACKEND (run from landrecord/backend/)                          │
+  ├────────────────────────────────────────────────────────────────────┤
+  │  npm install          → Install backend dependencies             │
+  │  npm start            → Start Express server (port 5000)         │
+  │  node server.js       → Same as npm start                        │
+  └────────────────────────────────────────────────────────────────────┘
+
+
+===============================================================================
+  6. TECH STACK
+===============================================================================
+
+  Frontend:
+    - React 19         (UI library)
+    - Vite 8           (Build tool & dev server)
+    - Vanilla CSS      (Styling - no Tailwind)
+    - Plus Jakarta Sans + Inter  (Google Fonts)
+
+  Backend:
+    - Node.js          (Runtime)
+    - Express.js 4     (HTTP server / REST API)
+    - CORS             (Cross-origin requests)
+    - JSON file        (Database - records.json)
+
+  Dev Tools:
+    - oxlint           (Linter)
+    - Vite HMR         (Hot Module Replacement for instant refresh)
+
+
+===============================================================================
+  7. PORTS USED
+===============================================================================
+
+  Frontend (Vite):    http://localhost:5173
+  Backend (Express):  http://localhost:5000
+
+
+===============================================================================
+  8. COMMON ISSUES & FIXES
+===============================================================================
+
+  Problem: "npm is not recognized"
+  Fix:     Install Node.js from https://nodejs.org and restart terminal.
+
+  Problem: "Module not found" or import errors
+  Fix:     Delete node_modules folder and package-lock.json, then run:
+               npm install
+
+  Problem: Port 5173 already in use
+  Fix:     Kill the process using the port:
+               npx kill-port 5173
+           Or Vite will auto-pick the next available port (5174, etc.)
+
+  Problem: Port 5000 already in use
+  Fix:     Kill the process:
+               npx kill-port 5000
+
+  Problem: Backend API not connecting from frontend
+  Fix:     Make sure both servers are running in separate terminals.
+           Check CORS is enabled in server.js (it is by default).
+
+  Problem: Blank white page on localhost:5173
+  Fix:     Check the browser console (F12) for errors.
+           Usually a missing import or syntax error.
+
+  Problem: Styles not updating
+  Fix:     Hard refresh: Ctrl + Shift + R
+           Or clear browser cache.
+
+
+===============================================================================
+  9. DEPLOYMENT (Production Build)
+===============================================================================
+
+  To create a production-ready build:
+
+      npm run build
+
+  This creates an optimized "dist/" folder with minified HTML, CSS, JS.
+
+  To preview the production build locally:
+
+      npm run preview
+
+  The dist/ folder can be deployed to any static hosting:
+    - Vercel
+    - Netlify
+    - Firebase Hosting
+    - GitHub Pages
+    - Any web server (Apache, Nginx)
+
+
+===============================================================================
+  10. TEAM NOTES
+===============================================================================
+
+  - Project Name: BhoomIntelli
+  - Full Name: Intelligent Land Record Digitization & Validation System
+  - Color Scheme: Navy (#1b5e3a green primary) + White + Mint accents
+  - Font: Plus Jakarta Sans (headings) + Inter (body)
+  - All branding assets are in /public folder
+  - SIH (Smart India Hackathon) Prototype
+
+===============================================================================
+                         END OF NOTES
+===============================================================================

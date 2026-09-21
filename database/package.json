@@ -1,0 +1,10 @@
+{
+  "name": "sih-database",
+  "version": "1.0.0",
+  "description": "Shared database and storage service",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0"
+  }
+}

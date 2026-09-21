@@ -1,0 +1,40 @@
+{
+  "records": [
+    {
+      "id": "REC-001",
+      "ownerName": "Ramesh Kumar",
+      "parcelId": "HR-20391",
+      "khasraNo": "45/12",
+      "district": "Gurugram",
+      "state": "Haryana",
+      "area": "2.45 Acres",
+      "date": "04 Sep 2026",
+      "status": "Verified",
+      "documentName": "khasra_khatouni_ramesh.pdf"
+    },
+    {
+      "id": "REC-002",
+      "ownerName": "Sunita Devi",
+      "parcelId": "HR-18776",
+      "khasraNo": "118/4",
+      "district": "Karnal",
+      "state": "Haryana",
+      "area": "1.80 Acres",
+      "date": "28 Aug 2026",
+      "status": "Verified",
+      "documentName": "sale_deed_sunita.pdf"
+    },
+    {
+      "id": "REC-003",
+      "ownerName": "Mahesh Yadav",
+      "parcelId": "HR-17402",
+      "khasraNo": "92/1",
+      "district": "Rewari",
+      "state": "Haryana",
+      "area": "3.10 Acres",
+      "date": "15 Aug 2026",
+      "status": "Needs Review",
+      "documentName": "mutation_doc_mahesh.jpg"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "bhoomisetu-backend",
+  "version": "1.0.0",
+  "description": "BhoomiSetu Intelligent Land Record Digitization and Validation Backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
