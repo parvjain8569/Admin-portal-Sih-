@@ -4,6 +4,15 @@ uploads/
 venv/
 __pycache__/
 *.pyc
+
+# PaddleOCR auto-downloads model weights here on first run
+~/.paddleocr/
+.paddleocr/
+
+# Vercel not used for this service
+vercel.json
+
+# Test files
 db.json
 test-khasra.jpg
 test-upload.js

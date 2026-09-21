@@ -11,10 +11,19 @@ from paddle_extractor import extract_land_record
 
 app = FastAPI(title="BhoomiIntelli OCR Service")
 
-# ── Middleware ──────────────────────────────────────────────
+# ── CORS ────────────────────────────────────────────────────────
+# Default origins: localhost dev + any *.vercel.app URL.
+# Override via env var ALLOWED_ORIGINS (comma-separated) in Render/Railway dashboard.
+_raw_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:3000,https://*.vercel.app"
+)
+allowed_origins = [o.strip() for o in _raw_origins.split(",")]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",  # catch all vercel preview URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
