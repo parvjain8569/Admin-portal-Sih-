@@ -93,7 +93,7 @@ export default function ProfileTab({
         aadhaarVerified: true,
         aadhaarDetails: mockData,
       })
-    }, 1500) // Reduced to 1.5s for faster UX
+    }, 300) // Reduced to 300ms for instant UX
   }
 
   const handleAadhaarVerify = () => {
@@ -103,9 +103,15 @@ export default function ProfileTab({
 
   const handleResetAadhaar = () => {
     setIsAadhaarVerified(false)
-    setAadhaarDetails(null)
     setAadhaarInput('')
+    setAadhaarDetails(null)
     setAadhaarError('')
+
+    onProfileSave({
+      ...formData,
+      aadhaarVerified: false,
+      aadhaarDetails: null,
+    })
   }
 
   const handleInputChange = (field, value) => {

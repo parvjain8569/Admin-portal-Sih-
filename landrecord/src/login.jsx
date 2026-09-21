@@ -163,7 +163,7 @@ export default function Login({ onLoginSuccess, onBackToWebsite, initialView = '
       setAadhaarVerifiedData(generateMockAadhaarData(cleaned, existingName))
       setSuccess('Aadhaar verified successfully! You can now sign in.')
       setView('signin')
-    }, 2000)
+    }, 300)
   }
 
   const handleSkipAadhaar = () => {
