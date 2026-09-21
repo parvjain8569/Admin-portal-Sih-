@@ -113,14 +113,14 @@ async def extract_ocr(document: UploadFile = File(...), hint: Optional[str] = Fo
             }
         }
         
-        print(f"[OCR] ✅ Extraction successful")
+        print(f"[OCR] [SUCCESS] Extraction successful")
         print(f"[OCR] Owner: {extracted_data.get('ownerName', 'N/A')}")
         print(f"[OCR] Total time: {result['meta']['totalTimeMs']}ms\n")
         
         return JSONResponse(content=result)
         
     except Exception as e:
-        print(f"[OCR] ❌ Extraction failed:", str(e))
+        print(f"[OCR] [FAILED] Extraction failed:", str(e))
         return JSONResponse(
             status_code=500,
             content={
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # Optional debug run
     port = int(os.getenv("PORT", 3001))
     print(f"\n{'='*60}")
-    print(f"  🔍 BhoomiIntelli OCR Service (Python/FastAPI + PaddleOCR)")
-    print(f"  📡 Running on http://localhost:{port}")
+    print(f"  [OCR] BhoomiIntelli OCR Service (Python/FastAPI + PaddleOCR)")
+    print(f"  [API] Running on http://localhost:{port}")
     print(f"{'='*60}\n")
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)

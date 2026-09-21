@@ -2,3 +2,8 @@ node_modules/
 .env
 uploads/
 venv/
+__pycache__/
+*.pyc
+db.json
+test-khasra.jpg
+test-upload.js

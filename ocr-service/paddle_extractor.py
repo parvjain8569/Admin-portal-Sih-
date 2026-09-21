@@ -9,7 +9,7 @@ def extract_land_record(image_path: str) -> dict:
     """
     Runs PaddleOCR on the given image and parses the raw text into structured fields.
     """
-    result = ocr.ocr(image_path, cls=True)
+    result = ocr.ocr(image_path)
     
     raw_texts = []
     if result and result[0]:
