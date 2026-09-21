@@ -75,12 +75,15 @@ export function generateMockAadhaarData(aadhaarNum) {
   const cleaned = aadhaarNum.replace(/\s/g, '')
   const formatted = cleaned.replace(/(\d{4})/g, '$1 ').trim()
   const masked = 'XXXX XXXX ' + cleaned.slice(-4)
+  const dd = String(10 + Math.floor(Math.random() * 20)).padStart(2, '0')
+  const mm = String(1 + Math.floor(Math.random() * 9)).padStart(2, '0')
+  const yyyy = String(1970 + Math.floor(Math.random() * 25))
   return {
     aadhaarNumber: cleaned,
     formattedAadhaar: formatted,
     maskedAadhaar: masked,
     name: MOCK_NAMES[Math.floor(Math.random() * MOCK_NAMES.length)],
-    dob: `${10 + Math.floor(Math.random() * 20)}/0${1 + Math.floor(Math.random() * 9)}/19${70 + Math.floor(Math.random() * 25)}`,
+    dob: `${yyyy}-${mm}-${dd}`,
     gender: Math.random() > 0.5 ? 'Male' : 'Female',
     address: MOCK_ADDRESSES[Math.floor(Math.random() * MOCK_ADDRESSES.length)],
     district: MOCK_DISTRICTS[Math.floor(Math.random() * MOCK_DISTRICTS.length)],
