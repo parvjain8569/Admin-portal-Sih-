@@ -69,7 +69,7 @@ export default function ProfileTab({
     setAadhaarError('')
     setAadhaarVerifying(true)
     setTimeout(() => {
-      const mockData = generateMockAadhaarData(cleaned)
+      const mockData = generateMockAadhaarData(cleaned, formData.name || profileData.name)
       setAadhaarDetails(mockData)
       setIsAadhaarVerified(true)
       setAadhaarVerifying(false)

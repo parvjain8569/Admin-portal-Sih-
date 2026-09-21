@@ -71,7 +71,7 @@ const MOCK_ADDRESSES = ['Village Khandsa, Gurugram', 'Mohalla Sadar, Karnal', 'W
 const MOCK_DISTRICTS = ['Gurugram', 'Karnal', 'Rewari', 'Faridabad', 'Panipat', 'Hisar', 'Rohtak']
 const MOCK_CONTACTS = ['9876543210', '9123456789', '8899776655', '7788994433', '9988776655']
 
-export function generateMockAadhaarData(aadhaarNum) {
+export function generateMockAadhaarData(aadhaarNum, existingName = null) {
   const cleaned = aadhaarNum.replace(/\s/g, '')
   const formatted = cleaned.replace(/(\d{4})/g, '$1 ').trim()
   const masked = 'XXXX XXXX ' + cleaned.slice(-4)
@@ -82,7 +82,7 @@ export function generateMockAadhaarData(aadhaarNum) {
     aadhaarNumber: cleaned,
     formattedAadhaar: formatted,
     maskedAadhaar: masked,
-    name: MOCK_NAMES[Math.floor(Math.random() * MOCK_NAMES.length)],
+    name: existingName || MOCK_NAMES[Math.floor(Math.random() * MOCK_NAMES.length)],
     dob: `${yyyy}-${mm}-${dd}`,
     gender: Math.random() > 0.5 ? 'Male' : 'Female',
     address: MOCK_ADDRESSES[Math.floor(Math.random() * MOCK_ADDRESSES.length)],

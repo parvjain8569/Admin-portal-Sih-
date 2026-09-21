@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
     "@vitalets/google-translate-api": "^9.2.1",
+    "puppeteer": "^25.11.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "@supabase/supabase-js": "^2.116.0"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

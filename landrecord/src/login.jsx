@@ -159,7 +159,8 @@ export default function Login({ onLoginSuccess, onBackToWebsite, initialView = '
     // Simulate verification delay
     setTimeout(() => {
       setAadhaarVerifying(false)
-      setAadhaarVerifiedData(generateMockAadhaarData(cleaned))
+      const existingName = formData.name ? `${formData.name} ${formData.surname}`.trim() : null
+      setAadhaarVerifiedData(generateMockAadhaarData(cleaned, existingName))
       setSuccess('Aadhaar verified successfully! You can now sign in.')
       setView('signin')
     }, 2000)
