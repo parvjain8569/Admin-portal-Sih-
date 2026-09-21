@@ -138,8 +138,8 @@ if __name__ == "__main__":
     import uvicorn
     # Optional debug run
     port = int(os.getenv("PORT", 3001))
-    print(f"\n{'═'*60}")
+    print(f"\n{'='*60}")
     print(f"  🔍 BhoomiIntelli OCR Service (Python/FastAPI + PaddleOCR)")
     print(f"  📡 Running on http://localhost:{port}")
-    print(f"{'═'*60}\n")
+    print(f"{'='*60}\n")
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)

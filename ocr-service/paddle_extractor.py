@@ -3,7 +3,7 @@ from paddleocr import PaddleOCR
 import re
 
 # Initialize PaddleOCR (using english and hindi, with angle classification)
-ocr = PaddleOCR(use_angle_cls=True, lang='hi', show_log=False)
+ocr = PaddleOCR(use_angle_cls=True, lang='hi')
 
 def extract_land_record(image_path: str) -> dict:
     """
