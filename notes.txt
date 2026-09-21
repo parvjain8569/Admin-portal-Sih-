@@ -1,0 +1,40 @@
+BhoomiIntelli Admin Portal — File & Architecture Reference Notes
+Last Updated: 2026-09-19
+
+1. Project Root: Admin Portal/
+- index.html: HTML shell, imports fonts Plus Jakarta Sans & Inter, mounts React app.
+- package.json: React 19 + Vite 8 dependencies.
+- vite.config.js: Runs on port 5174.
+- vercel.json: SPA rewrite rule for Vercel deployment.
+- README.md: Public documentation and overview.
+- PROJECT_CONTEXT.md: Complete AI onboarding context.
+- NOTES.md: Markdown reference for all files.
+- AI_NOTES.md: Workflow rules, AI instructions, and dev notes.
+- GIT_PUSH_GUIDE.md: Git staging and push cheat-sheet.
+
+2. Static Assets: public/
+- bhoomintelli-icon.png: Square brand logo icon.
+- bhoomintelli-wordmark.png: Horizontal brand logo.
+- favicon.svg: SVG browser favicon.
+
+3. Source Code: src/
+- main.jsx: Mounts React application into DOM.
+- App.jsx: Authentication state, Dev Mode toggle, layout switcher.
+- index.css: CSS custom properties, color palette, typography.
+- admin.css: Comprehensive styling for all admin components (~1,500 lines).
+- AdminLogin.jsx: 3-attempt lockout, password visibility toggle, auto-fill credentials.
+- AdminDashboard.jsx: Responsive sidebar navigation and topbar with interactive notification bell & dropdown menu.
+
+4. Components: src/components/
+- RecordAuditStudio.jsx: The 1/3 split screen verification studio:
+  * Pane 1 (1/3): Parchment Deed Viewer with zoom, stamps, seals, and highlight hotspots.
+  * Pane 2 (1/3): AI-OCR extraction with confidence badges and bounding boxes.
+  * Pane 3 (1/3): Citizen review vs Admin decision matrix, field Pass/Flag/Edit, record grading, notice issuance.
+  * Mobile (< 1024px): 1-touch tab switcher between Deed, OCR, and Decision Matrix with sticky verdict actions.
+
+5. Pages: src/pages/
+- DashboardHome.jsx: Executive metrics, quick shortcuts, audit activity feed.
+- RecordsPage.jsx: Searchable land records registry with status tabs and audit launcher.
+- UsersPage.jsx: Citizen directory, Aadhaar KYC verification status, access controls.
+- AnalyticsPage.jsx: Verification analytics, OCR accuracy statistics, state distribution.
+- SettingsPage.jsx: System settings, OCR confidence thresholds, admin profile.
